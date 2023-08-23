@@ -23,7 +23,7 @@ class colecao{
    }
     
    //factory determina qual vai ser o tipo de lista da instancia. Boolean repetidos nao faz diferenca,mas botei por causa do enunciado
-    public static colecao Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
+    public colecao Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
         instancia = get_instance();
 
         if(ordem.equalsIgnoreCase("insert")){
