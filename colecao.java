@@ -16,37 +16,34 @@ class colecao{
    public static colecao get_instance(){
     if(instancia == null){
         instancia = new colecao();
+        instancia.lista = new ArrayList<>(); //lista por default eh arraylist
     }
     return instancia;
     
    }
     
 
-    public static colecao Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
+    public static Collection Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
         instancia = get_instance();
 
         if(ordem.equalsIgnoreCase("insert")){
                 if(tamanho_conhecido == true){ 
-                    instancia.lista = new LinkedList<>();
-                    return instancia;
+                    return instancia.lista = new LinkedList<>();
                 }
                 else{
-                    instancia.lista = new ArrayList<>();
-                    return instancia;
+                    return instancia.lista = new ArrayList<>();
                 }
             
         }
         else if(ordem.equalsIgnoreCase("N/A")){
-            instancia.lista = new HashSet<>();
-            return instancia;
+            return instancia.lista = new HashSet<>();
         }
         else if (ordem.equalsIgnoreCase("natural")){
-            instancia.lista = new TreeSet<>();
-            return instancia;
+            return instancia.lista = new TreeSet<>();
         }
         else{
             System.out.println("Erro");
-            return instancia;
+            return instancia.lista;
         }
     }
 
