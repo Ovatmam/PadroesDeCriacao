@@ -22,28 +22,32 @@ class colecao{
     
    }
     
-
-    public static Collection Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
+   //factory determina qual vai ser o tipo de lista da instancia. Boolean repetidos nao faz diferenca,mas botei por causa do enunciado
+    public static colecao Colecao_Factory(Boolean tamanho_conhecido,String ordem,Boolean repetidos){
         instancia = get_instance();
 
         if(ordem.equalsIgnoreCase("insert")){
                 if(tamanho_conhecido == true){ 
-                    return instancia.lista = new LinkedList<>();
+                    instancia.lista = new LinkedList<>();
+                    return instancia;
                 }
                 else{
-                    return instancia.lista = new ArrayList<>();
+                    instancia.lista = new ArrayList<>();
+                    return instancia;
                 }
             
         }
         else if(ordem.equalsIgnoreCase("N/A")){
-            return instancia.lista = new HashSet<>();
+            instancia.lista = new HashSet<>();
+            return instancia;
         }
         else if (ordem.equalsIgnoreCase("natural")){
-            return instancia.lista = new TreeSet<>();
+            instancia.lista = new TreeSet<>();
+            return instancia;
         }
         else{
             System.out.println("Erro");
-            return instancia.lista;
+            return instancia;
         }
     }
 
