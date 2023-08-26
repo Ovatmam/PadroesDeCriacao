@@ -1,5 +1,5 @@
 EXERCÍCIO 1:
-
+O padrao singleton não parece ser uma boa opcao para esse modelo, visto que se um usuario precisa ter ao mesmo tempo multiplas listas com caracteristicas diferentes ele nao conseguira, porso ter acesso a uma instancia de lista.
 
 EXERCÍCIO 2:
 
