@@ -1,0 +1,8 @@
+EXERCÍCIO 1:
+
+
+EXERCÍCIO 2:
+
+
+EXERCÍCIO 3:
+Poderia ser usado o padrão builder, tendo os atributos dos personagens "normais" como default, com dois métodos separados para montar de forma direta os personagens "sortudos" e "poderosos".
