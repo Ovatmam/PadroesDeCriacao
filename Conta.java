@@ -1,4 +1,5 @@
-package ContaBancaria;
+
+
 public class Conta {
     public enum Categoria {
         NORMAL, ADVANCED, PREMIUM
@@ -28,7 +29,7 @@ public class Conta {
         private Categoria categoriaInicial = Categoria.NORMAL;
         private int saldoLivreInicial = 0;
         private int saldoMinimoLivre = -100;
-        private double taxaSaldoNegativo = 20;
+        private double taxaSaldoNegativo = 0;
         private int salAplicacaoInicial = 0;
         private double taxaRemuneracao = 0;
 
@@ -44,7 +45,7 @@ public class Conta {
             // dependendo do tipo de conta, ajusta as taxas
             if (categoria == Conta.Categoria.NORMAL) { // provavelmente não precisaria deste, pois é o padrão
                 this.taxaRemuneracao = 0;
-                this.taxaSaldoNegativo = 20;
+                this.taxaSaldoNegativo = 0;
                 this.saldoMinimoLivre = -100;
             }
 
@@ -94,17 +95,26 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta:" + "\n\tdiasDaConta = " + diasDaConta + "\n\tnomeCorrentista = " + nomeCorrentista
-                + "\n\tnumeroConta = " + numeroConta + "\n\tcategoriaInicial = "
-                + categoriaInicial + "\n\tsaldoLivreInicial = " + saldoLivre + "\n\ttaxaSaldoNegativo = "
-                + taxaSaldoNegativo + "\n\tsaldoMinimoLivre = " + saldoMinimoLivre + "\n\tsalAplicacaoInicial = "
-                + salAplicacao + "\n\ttaxaRemuneracao = " + taxaRemuneracao;
+        return "Conta: " + numeroConta +
+                "\n\tDados:" +
+                "\n\tnomeCorrentista = " + nomeCorrentista +
+                "\n\ttipoConta = " + categoriaInicial +
+                "\n\ttempoDaConta = " + diasDaConta +
+                "\n" +
+                "\n\tSaldos:" +
+                "\n\tsaldoLivre = " + saldoLivre +
+                "\n\tsaldoRemunerado = " + salAplicacao +
+                "\n" +
+                "\n\tTaxas e mínimo:" +
+                "\n\ttaxaSaldoNegativo = " + taxaSaldoNegativo +
+                "\n\ttaxaRemuneracao = " + taxaRemuneracao +
+                "\n\tsaldoMinimoLivre = " + saldoMinimoLivre;
     }
 
     public void retirarLivre(int valorRetirada) {
-        if (saldoLivre - valorRetirada > saldoMinimoLivre) {
+        if (saldoLivre - valorRetirada >= saldoMinimoLivre) {
             saldoLivre -= valorRetirada;
-            System.out.println("Retirado com sucesso, saldo atual = " + saldoLivre);
+            System.out.println("Retirado com sucesso. Saldo atual conta " + numeroConta + " = " + saldoLivre);
         } else {
             System.out.println("Não foi possível realizar a retirada");
         }
@@ -112,39 +122,41 @@ public class Conta {
 
     public void depositarLivre(int valorDeposito) {
         saldoLivre += valorDeposito;
-        System.out.println("Deposito realizado com sucesso, novo saldo livre = " + saldoLivre);
+        System.out.println(
+                "Deposito realizado com sucesso, novo saldo livre da conta " + numeroConta + " = " + saldoLivre);
     }
 
     public void depositarRemunerado(int valorDeposito) {
         salAplicacao += valorDeposito;
-        System.out.println("Deposito realizado com sucesso, novo saldo remunerado = " + salAplicacao);
+        System.out.println(
+                "Deposito realizado com sucesso, novo saldo remunerado da conta " + numeroConta + " = " + salAplicacao);
     }
 
     public void transferirLivreRemunerado(int valorTransferido) {
-        //testa se tem esse valor a ser transferido e pula os dias.
+        // testa se tem esse valor a ser transferido e pula os dias.
         if (valorTransferido <= salAplicacao) {
             saldoLivre += valorTransferido;
             salAplicacao -= valorTransferido;
-            //pula dois dias para realizar a transferencia
+            // pula dois dias para realizar a transferencia
             pularDia();
             pularDia();
 
-            System.out.println("Transferencia realizada com sucesso");
+            System.out.println("Transferencia realizada com sucesso na conta " + numeroConta);
         } else {
             System.out.println("Não foi possível realizar a transferencia, valor invalido");
         }
     }
 
     public void pularDia() {
-        //se tiver dinheiro na conta de remuneracao, deposita a taxa de remuneracao
-        if(salAplicacao>0){
-            salAplicacao += taxaRemuneracao; 
+        // se tiver dinheiro na conta de remuneracao, deposita a taxa de remuneracao
+        if (salAplicacao > 0) {
+            salAplicacao += taxaRemuneracao;
         }
-        // se tiver negativo na conta livre, cobra a taxa 
-        if(saldoLivre <0){
-            saldoLivre-= taxaSaldoNegativo;  
+        // se tiver negativo na conta livre, cobra a taxa
+        if (saldoLivre < 0) {
+            saldoLivre -= taxaSaldoNegativo;
         }
-        //adiciona um dia na conta
+        // adiciona um dia na conta
         diasDaConta++;
 
     }
