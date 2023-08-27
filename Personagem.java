@@ -10,6 +10,9 @@ public class Personagem {
            vida < 0 || vida > 5) 
             {
                 System.out.println("Atributos inválidos, personagem não criado.");
+                this.visibilidade = -1;
+                this.poder = -1;
+                this.vidas = -1;
                 return;
             }
         this.visibilidade = vis;
