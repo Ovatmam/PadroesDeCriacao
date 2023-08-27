@@ -2,7 +2,12 @@ EXERCÍCIO 1:
 O padrao singleton não parece ser uma boa opcao para esse modelo, visto que se um usuario precisa ter ao mesmo tempo multiplas listas com caracteristicas diferentes ele nao conseguira, porso ter acesso a uma instancia de lista.
 
 EXERCÍCIO 2:
-
+O padrão Builder é sim indicado para resolver o problema 2, das contas bancárias, pois ao construir uma nova conta
+apenas dois atributos são necessários, o nome do correntista e o numero da conta.
+Desta forma, ao criar a conta, são requeridas apenas estas duas informações e a conta é criada como padrão,
+tendo seu tipo como normal. Caso a conta a ser criada já necessite outras alterações, os métodos do builder são
+facilmente acessados, podendo-se modificar o saldo livre inicial e saldo remunerado inicial, além do tipo de conta, 
+este que acaba alterando automaticamente as taxas de cobrança, remuneração e saldo mínimo possível.
 
 EXERCÍCIO 3:
 Poderia ser usado o padrão builder, tendo os atributos dos personagens "normais" como default, com dois métodos separados para montar de forma direta os personagens "sortudos" e "poderosos".
