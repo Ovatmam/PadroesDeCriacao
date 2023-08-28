@@ -6,11 +6,12 @@ public class App {
 
     public static void main(String[]args){
         //TesteEx1();
-        //TesteEx2();
-        TesteEx3();
+        TesteEx2();
+        //TesteEx3();
     }
 
     public static void TesteEx1() {
+        System.out.println("\nTESTE DO EXERCÍCIO 1:");
         //Exercício 1
         colecao y = colecao.get_instance();
         y.Colecao_Factory(true, "insert", true);
@@ -20,6 +21,7 @@ public class App {
     }
 
     public static void TesteEx2() {
+        System.out.println("\nTESTE DO EXERCÍCIO 2:");
         // Conta criada com atributos padrão, tipo normal, saldos e taxas zeradas
         Conta contaPadrao = new Conta.Builder("João Alberto", 1)
                 .build();
@@ -76,6 +78,7 @@ public class App {
     }
 
     public static void TesteEx3() {
+        System.out.println("\nTESTE DO EXERCÍCIO 3:");
         System.out.println("Exibindo personagens:");
 
         Personagem p1 = Personagem.normal();
